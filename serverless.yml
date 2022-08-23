@@ -1,0 +1,62 @@
+org: avijitjsx
+app: serverless
+service: serverless
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  create:
+    handler: handler.create
+  events:
+    -http:
+       path:users
+       method:post
+       cors:true
+  
+  getUsers:
+    handler: handler.getUsers
+    events:
+      - -http:
+         path:users
+         method:get
+         cors:true
+
+  getUser:
+   handler: handler.getUser
+   events:
+     - -http:
+        path:user/{id}
+        method:get
+        cors:true
+
+  update:
+    handler: handler.update
+    events:
+      - -http:
+         path:user/{id}
+         method:put
+         cors:true
+
+  delete:
+    handler: handler.delete
+    events:
+      - -http:
+         path:user/{id}
+         method:delete
+         cors:true
+
+plugins:
+  - serverless-offline
+     
+
+        
+
+
+ 
+         
+
+
